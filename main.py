@@ -20,9 +20,6 @@ def contains_target_color(image, target_color=(231, 84, 73)):
                 return True
     return False
 
-# Initialize variables
-last_checked = time.time()
-
 # Main loop
 while True:
     if keyboard.is_pressed('F7'):  # Check if F7 is pressed to stop the script
@@ -34,7 +31,7 @@ while True:
     if contains_target_color(image):
         # First right-click
         pyautogui.click(button='right')
-        print("First right-click detected, waiting 50 milliseconds before the next click...")
+        print("First right-click detected, waiting 5 milliseconds before the next click...")
 
         # Wait 5 milliseconds
         time.sleep(0.005)
@@ -46,10 +43,5 @@ while True:
         # Wait 500 milliseconds after the second right-click
         time.sleep(0.5)
 
-    # Check the screen every second
-    while time.time() - last_checked < 1:
-        if keyboard.is_pressed('F7'):  # Check again if F7 is pressed while waiting
-            print("F7 pressed. Exiting script.")
-            os._exit(1)  # Exit the script
-        time.sleep(0.01)
-    last_checked = time.time()
+    # Check the screen every 5 milliseconds
+    time.sleep(0.005)
