@@ -21,7 +21,7 @@ def contains_target_color(image, target_colors):
     return False
 
 # Main loop
-target_colors = [(231, 84, 73), (255, 85, 85)]  # RGB values for #E75449 and #FF5555
+target_colors = [(231, 84, 73), (63, 21, 21)]  # RGB values for #E75449 and #3F1515
 while True:
     if keyboard.is_pressed('F7'):  # Check if F7 is pressed to stop the script
         print("F7 pressed. Exiting script.")
