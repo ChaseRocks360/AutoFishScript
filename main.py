@@ -32,18 +32,19 @@ while True:
     image = capture_screen()
 
     if contains_target_color(image):
-        # Right-click
+        # First right-click
         pyautogui.click(button='right')
-        print("First right-click detected, waiting before the next click...")
-        # Wait 1 second after right-clicking to avoid multiple triggers
-        time.sleep(1)
-        
-        # Right-click again
-        pyautogui.click(button='right')
-        print("Second right-click detected, resuming detection...")
+        print("First right-click detected, waiting 50 milliseconds before the next click...")
 
-        # Wait 1 second after second right-click to avoid multiple triggers
-        time.sleep(1)
+        # Wait 50 milliseconds
+        time.sleep(0.05)
+
+        # Second right-click
+        pyautogui.click(button='right')
+        print("Second right-click detected, waiting 500 milliseconds before resuming detection...")
+
+        # Wait 500 milliseconds after the second right-click
+        time.sleep(0.5)
 
     # Check the screen every second
     while time.time() - last_checked < 1:
