@@ -36,8 +36,8 @@ while True:
         pyautogui.click(button='right')
         print("First right-click detected, waiting 50 milliseconds before the next click...")
 
-        # Wait 50 milliseconds
-        time.sleep(0.05)
+        # Wait 5 milliseconds
+        time.sleep(0.005)
 
         # Second right-click
         pyautogui.click(button='right')
