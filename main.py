@@ -22,9 +22,14 @@ while True:
     pixel_color = get_pixel_color(x, y)
 
     if pixel_color == target_color:
+        print("Target color detected at (1601, 919). Waiting 75 milliseconds before the first right-click...")
+
+        # Wait 75 milliseconds
+        time.sleep(0.075)
+
         # First right-click
         pyautogui.click(button='right')
-        print("Target color detected at (1601, 919). First right-click performed, waiting 5 milliseconds before the next click...")
+        print("First right-click performed, waiting 5 milliseconds before the next click...")
 
         # Wait 5 milliseconds
         time.sleep(0.005)
