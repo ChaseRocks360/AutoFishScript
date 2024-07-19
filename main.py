@@ -4,44 +4,37 @@ import pyautogui
 import keyboard
 import os
 
-# Function to capture the screen
-def capture_screen():
-    screenshot = ImageGrab.grab()
-    return screenshot
-
-# Function to check for the specific color
-def contains_target_color(image, target_color=(231, 84, 73)):
-    pixels = image.load()
-    width, height = image.size
-
-    for x in range(width):
-        for y in range(height):
-            if pixels[x, y][:3] == target_color:  # Compare only RGB values
-                return True
-    return False
+# Function to capture the specific pixel color
+def get_pixel_color(x, y):
+    screenshot = ImageGrab.grab(bbox=(x, y, x+1, y+1))
+    return screenshot.getpixel((0, 0))
 
 # Main loop
+target_color = (255, 85, 85)  # RGB value for #FF5555
+x, y = 1601, 919
+
 while True:
     if keyboard.is_pressed('F7'):  # Check if F7 is pressed to stop the script
         print("F7 pressed. Exiting script.")
         os._exit(1)  # Exit the script
 
-    image = capture_screen()
+    # Get the color of the specific pixel
+    pixel_color = get_pixel_color(x, y)
 
-    if contains_target_color(image):
+    if pixel_color == target_color:
         # First right-click
         pyautogui.click(button='right')
-        print("First right-click detected, waiting 5 milliseconds before the next click...")
+        print("Target color detected at (1601, 919). First right-click performed, waiting 5 milliseconds before the next click...")
 
         # Wait 5 milliseconds
         time.sleep(0.005)
 
         # Second right-click
         pyautogui.click(button='right')
-        print("Second right-click detected, waiting 500 milliseconds before resuming detection...")
+        print("Second right-click performed, waiting 500 milliseconds before resuming detection...")
 
         # Wait 500 milliseconds after the second right-click
         time.sleep(0.5)
 
-    # Check the screen every 5 milliseconds
+    # Check the pixel color every 5 milliseconds
     time.sleep(0.005)
